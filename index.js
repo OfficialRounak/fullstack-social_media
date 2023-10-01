@@ -11,7 +11,7 @@ import { fileURLToPath } from "url";
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js';
 import postRoutes from './routes/posts.js';
-import {createPost} from './controllers/posts.js'
+import {createPost} from './controllers/posts.js';
 import { register } from './controllers/auth.js';
 import { verifyToken } from './middlewares/auth.js';
 
@@ -44,7 +44,7 @@ const upload=multer({storage});
 
 // Routes with Files
 app.post("/auth/register", upload.single("picture"), register); 
-app.post("/posts",verifyToken,upload.single("picture"),createPost);
+app.post("/posts",verifyToken,upload.single("picture"),createPost);//all the routes which has the picture upload func should align together.
 
 //all other Routes from the routes folder
 app.use("/auth", authRoutes);
@@ -59,7 +59,7 @@ mongoose
         useUnifiedTopology: true,
     })
     .then(()=>{
-        app.listen(PORT,()=>console.log(`SERVER RUNNING AT PORT : ${PORT}`))
+        app.listen(PORT,()=>console.log(`SERVER RUNNING AT PORT : ${PORT}`));
     })
     .catch((error)=>console.log(`${error} did not connect`));
 
